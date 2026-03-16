@@ -186,6 +186,211 @@ section{padding:100px 40px;scroll-margin-top:80px}
 .proj-logo-svg{width:48px;height:48px;border-radius:10px;border:1px solid var(--border2);background:var(--s3);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 
 /* ─────────────────────────────────────────────
+   CARD DEDBOLL — CAMPO DE FUTEBOL
+───────────────────────────────────────────── */
+.proj-card.dedboll-card{
+  background:#0a1f0a;
+  border-color:rgba(57,255,20,.3);
+  position:relative;
+  overflow:hidden;
+}
+.proj-card.dedboll-card:hover{
+  border-color:rgba(57,255,20,.6);
+  transform:translateY(-4px);
+  box-shadow:0 24px 70px rgba(57,255,20,.12),0 0 0 1px rgba(57,255,20,.15);
+}
+
+/* ── HEADER = campo de futebol SVG ── */
+.dedboll-pitch-wrap{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  border-bottom:2px solid rgba(57,255,20,.25);
+  flex-shrink:0;
+}
+
+/* grama listrada */
+.dedboll-pitch-bg{
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    90deg,
+    #0d260d 0px,
+    #0d260d 28px,
+    #112e11 28px,
+    #112e11 56px
+  );
+}
+
+/* canvas do campo (SVG inline via CSS paint) */
+.dedboll-pitch-svg{
+  position:relative;
+  z-index:1;
+  width:100%;
+  display:block;
+}
+
+/* badge no canto do campo */
+.dedboll-pitch-badge{
+  position:absolute;
+  top:10px;
+  left:12px;
+  z-index:5;
+  background:rgba(8,12,8,.85);
+  border:1px solid rgba(57,255,20,.35);
+  border-radius:6px;
+  padding:4px 10px;
+  font-family:var(--mono);
+  font-size:.58rem;
+  color:#eab308;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  backdrop-filter:blur(4px);
+}
+.dedboll-bola{
+  display:inline-block;
+  font-size:.75rem;
+  animation:bolaSpin 3s linear infinite;
+}
+@keyframes bolaSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* ícones de funcionalidade no campo */
+.dedboll-feat-icons{
+  position:absolute;
+  bottom:10px;
+  right:10px;
+  z-index:5;
+  display:flex;
+  gap:6px;
+}
+.dedboll-feat-icon{
+  width:28px;
+  height:28px;
+  background:rgba(8,12,8,.8);
+  border:1px solid rgba(57,255,20,.3);
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  color:var(--green);
+  backdrop-filter:blur(4px);
+}
+
+/* ── LADO ESQUERDO (info) com textura de grama sutil ── */
+.dedboll-left{
+  padding:28px;
+  border-right:1px solid rgba(57,255,20,.12);
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  background:
+    radial-gradient(ellipse at 0% 100%,rgba(57,255,20,.04) 0%,transparent 55%),
+    #0a1f0a;
+  position:relative;
+}
+.dedboll-left::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(57,255,20,.018) 18px,
+    rgba(57,255,20,.018) 19px
+  );
+  pointer-events:none;
+}
+@media(max-width:900px){.dedboll-left{border-right:none;border-bottom:1px solid rgba(57,255,20,.12)}}
+
+/* barra de progresso de desenvolvimento */
+.dedboll-progress{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:4px;
+}
+.dedboll-progress-label{
+  display:flex;
+  justify-content:space-between;
+  font-family:var(--mono);
+  font-size:.6rem;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.dedboll-progress-label span:last-child{color:var(--green)}
+.dedboll-progress-bar{
+  height:4px;
+  background:rgba(57,255,20,.1);
+  border-radius:99px;
+  overflow:hidden;
+  border:1px solid rgba(57,255,20,.15);
+}
+.dedboll-progress-fill{
+  height:100%;
+  width:65%;
+  background:linear-gradient(90deg,#16a34a,var(--green));
+  border-radius:99px;
+  position:relative;
+  animation:dedbollProgress 2s ease both;
+}
+@keyframes dedbollProgress{from{width:0}to{width:65%}}
+.dedboll-progress-fill::after{
+  content:'';
+  position:absolute;
+  top:0;right:0;bottom:0;
+  width:18px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.4));
+  animation:progressShine 2s 2s ease-in-out infinite;
+}
+@keyframes progressShine{
+  0%{opacity:0;transform:translateX(-20px)}
+  50%{opacity:1}
+  100%{opacity:0;transform:translateX(0)}
+}
+
+/* tag de tech com cor grama */
+.ttag-field{
+  font-family:var(--mono);
+  font-size:.63rem;
+  color:#6dbf6d;
+  background:rgba(57,255,20,.06);
+  border:1px solid rgba(57,255,20,.18);
+  padding:3px 7px;
+  border-radius:4px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+/* link do projeto com tom grama */
+.proj-link-field{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--green);
+  border:1px solid rgba(57,255,20,.25);
+  padding:7px 14px;
+  border-radius:6px;
+  text-decoration:none;
+  transition:background .2s,box-shadow .2s;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(57,255,20,.04);
+}
+.proj-link-field:hover{
+  background:rgba(57,255,20,.12);
+  box-shadow:0 0 18px rgba(57,255,20,.2);
+}
+
+/* ─────────────────────────────────────────────
    CARD S.O.M — ESTILO OCEANO
 ───────────────────────────────────────────── */
 .proj-card.som-card{
@@ -539,27 +744,109 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:28px 40px
     <h2 class="section-title reveal d1">Projetos<span style="color:var(--green)">.</span></h2>
     <div class="proj-grid">
 
-      <!-- ══ DEDBOLL — FEAT ══ -->
-      <article class="proj-card feat reveal">
-        <div class="proj-header">
-          <div class="proj-dots"><div class="proj-dot dot-r"></div><div class="proj-dot dot-y"></div><div class="proj-dot dot-g"></div></div>
-          <span class="proj-badge" style="color:#eab308;background:rgba(234,179,8,.1);border-color:rgba(234,179,8,.35)">Em desenvolvimento</span>
+      <!-- ══ DEDBOLL — CAMPO DE FUTEBOL ══ -->
+      <article class="proj-card feat dedboll-card reveal">
+
+        <!-- ── HEADER: campo de futebol SVG ── -->
+        <div class="dedboll-pitch-wrap">
+          <div class="dedboll-pitch-bg"></div>
+          <svg class="dedboll-pitch-svg" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <!-- grama escura de fundo extra -->
+            <rect width="900" height="220" fill="none"/>
+
+            <!-- linhas externas do campo -->
+            <rect x="30" y="18" width="840" height="184" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2" rx="2"/>
+
+            <!-- linha do meio -->
+            <line x1="450" y1="18" x2="450" y2="202" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+
+            <!-- círculo central -->
+            <circle cx="450" cy="110" r="42" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2"/>
+            <!-- ponto central -->
+            <circle cx="450" cy="110" r="3" fill="rgba(255,255,255,.4)"/>
+
+            <!-- área grande esquerda -->
+            <rect x="30" y="62" width="100" height="96" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <!-- área pequena esquerda -->
+            <rect x="30" y="88" width="42" height="44" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+            <!-- goleira esquerda -->
+            <rect x="18" y="97" width="12" height="26" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+            <!-- ponto penalti esquerdo -->
+            <circle cx="100" cy="110" r="2.5" fill="rgba(255,255,255,.4)"/>
+            <!-- arco área esquerda -->
+            <path d="M130,75 A45,45 0 0,1 130,145" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+
+            <!-- área grande direita -->
+            <rect x="770" y="62" width="100" height="96" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <!-- área pequena direita -->
+            <rect x="828" y="88" width="42" height="44" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+            <!-- goleira direita -->
+            <rect x="870" y="97" width="12" height="26" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+            <!-- ponto penalti direito -->
+            <circle cx="800" cy="110" r="2.5" fill="rgba(255,255,255,.4)"/>
+            <!-- arco área direita -->
+            <path d="M770,75 A45,45 0 0,0 770,145" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+
+            <!-- cantos do campo -->
+            <path d="M30,18 A10,10 0 0,1 40,28" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <path d="M870,18 A10,10 0 0,0 860,28" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <path d="M30,202 A10,10 0 0,0 40,192" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+            <path d="M870,202 A10,10 0 0,1 860,192" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+
+            <!-- overlay escuro gradiente para o texto ficar legível -->
+            <defs>
+              <linearGradient id="pitchOverlay" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#0a1f0a" stop-opacity="0"/>
+                <stop offset="100%" stop-color="#0a1f0a" stop-opacity=".18"/>
+              </linearGradient>
+            </defs>
+            <rect width="900" height="220" fill="url(#pitchOverlay)"/>
+          </svg>
+
+          <!-- badge "Em desenvolvimento" sobre o campo -->
+          <div class="dedboll-pitch-badge">
+            <span class="dedboll-bola">⚽</span> Em desenvolvimento
+          </div>
+
+          <!-- ícones de features no canto inferior direito -->
+          <div class="dedboll-feat-icons">
+            <div class="dedboll-feat-icon" title="Firebase Realtime"><i class="fa-solid fa-bolt"></i></div>
+            <div class="dedboll-feat-icon" title="Login Google"><i class="fa-brands fa-google"></i></div>
+            <div class="dedboll-feat-icon" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="dedboll-feat-icon" title="Admin"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
         </div>
-        <div class="feat-inner">
-          <div class="feat-left">
+
+        <!-- ── CONTEÚDO: duas colunas ── -->
+        <div class="feat-inner" style="min-height:380px">
+          <!-- info -->
+          <div class="dedboll-left">
             <div>
-              <h3 class="proj-title">DedBoll Futebol Society</h3>
-              <p class="proj-desc">Sistema completo de reservas de quadras society. Landing page moderna, disponibilidade em tempo real, painel admin com heatmap, login com Google, cadastro multi-step e integração com WhatsApp.</p>
+              <h3 class="proj-title" style="color:#e8f5e8">DedBoll <span style="color:var(--green)">Futebol Society</span></h3>
+              <p class="proj-desc" style="color:#8aad8a">Sistema completo de reservas de quadras society. Landing page moderna, disponibilidade em tempo real, painel admin com heatmap, login com Google, cadastro multi-step e integração com WhatsApp.</p>
             </div>
+
+            <!-- barra de progresso de dev -->
+            <div class="dedboll-progress">
+              <div class="dedboll-progress-label"><span>Progresso do projeto</span><span>65%</span></div>
+              <div class="dedboll-progress-bar"><div class="dedboll-progress-fill"></div></div>
+            </div>
+
             <div class="proj-tech">
-              <span class="ttag">HTML</span><span class="ttag">CSS</span><span class="ttag">JavaScript</span>
-              <span class="ttag">Firebase Auth</span><span class="ttag">Firebase RTDB</span><span class="ttag">Tailwind</span>
+              <span class="ttag-field">HTML</span>
+              <span class="ttag-field">CSS</span>
+              <span class="ttag-field">JavaScript</span>
+              <span class="ttag-field">Firebase Auth</span>
+              <span class="ttag-field">Firebase RTDB</span>
+              <span class="ttag-field">Tailwind</span>
             </div>
             <div class="proj-links">
-              <a href="#" class="proj-link" style="opacity:.35;pointer-events:none;cursor:not-allowed">&#8599; Demo em breve</a>
-              <a href="https://github.com/noorion02-creator" target="_blank" rel="noopener noreferrer" class="proj-link"><i class="fa-brands fa-github"></i> GitHub</a>
+              <a href="#" class="proj-link-field" style="opacity:.35;pointer-events:none;cursor:not-allowed">&#8599; Demo em breve</a>
+              <a href="https://github.com/noorion02-creator" target="_blank" rel="noopener noreferrer" class="proj-link-field"><i class="fa-brands fa-github"></i> GitHub</a>
             </div>
           </div>
+
+          <!-- slideshow + vídeo -->
           <div class="feat-right">
             <div class="feat-media-top">
               <div class="proj-slideshow" id="slideshow"></div>
